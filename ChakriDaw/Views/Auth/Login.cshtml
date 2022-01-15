@@ -1,0 +1,21 @@
+﻿@model ChakriDaw.ViewModel.Login
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<form method="post" action="/Auth/Login">
+    <input type="email" name="Email" value="@Model.Email" class="form-control" placeholder="Your email">
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    <input type="password" name="Password" value="@Model.Password" class="form-control" placeholder="Your password">
+    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    <input type="submit" class="btn btn-block" value="Login" />
+</form>
+
+@if (TempData["ErrMsg"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrMsg"]
+    </div>
+}

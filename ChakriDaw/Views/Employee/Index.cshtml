@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ChakriDaw.Model.EmployeeMultipleClass>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<center>
+    <h2> Information</h2>
+    <hr />
+    <table class="table table-bordered">
+
+        <tr>
+            <td>Name </td>
+            <td>Exam</td>
+            <td>Board</td>
+            <td>Institute Name</td>
+            <td>Passed Year</td>
+            <td>Skill</td>
+        </tr>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                
+
+                <td >@item.UserDetails.Name</td>
+                <td>@item.ExamDetails.Name</td>
+                <td>@item.BoardDetails.Name</td>
+                <td>@item.AcademicDetails.InstituteName</td>
+                <td>@item.AcademicDetails.PassedYear</td>
+                <td >@item.AcademicDetails.Skill</td>
+            </tr>
+        }
+    </table>
+</center>
+

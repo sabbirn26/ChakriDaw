@@ -1,0 +1,102 @@
+﻿@model IEnumerable<ChakriDaw.ViewModels.JobPost>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/shared/ManagerLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Manager Panel - ChakriChai</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Admin")
+</head>
+<body>
+
+    <h3>Pending Job Applications</h3>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeadLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Skill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vacancies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalaryMin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalaryMax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeerId)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeadLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Skill)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vacancies)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalaryMin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalaryMax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeerId)
+                </td>
+            </tr>
+        }
+        </tr>
+    </table>
+    </div>
+    </div>
+    </div>
+    <div class="col-6">
+        <h3>Pending Employee Varification</h3>
+        <table>
+        </table>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+    </div>
+
+
+    </div>
+</body>
+@Scripts.Render("~/bundles/bootstrap")
+</html>

@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChakriChaiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Academic">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PassedYear" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="InstituteName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Skill" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExamId" Type="Int32" Nullable="false" />
+    <Property Name="BoardId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Board" Relationship="Self.FK__Academics__Board__36B12243" FromRole="Academics" ToRole="Boards" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Academics__Emplo__37A5467C" FromRole="Academics" ToRole="Employees" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK__Academics__ExamI__35BCFE0A" FromRole="Academics" ToRole="Exams" />
+  </EntityType>
+  <EntityType Name="Apply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplyStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JobPostId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Applies__Employe__3A81B327" FromRole="Applies" ToRole="Employees" />
+    <NavigationProperty Name="JobPost" Relationship="Self.FK__Applies__JobPost__398D8EEE" FromRole="Applies" ToRole="JobPosts" />
+  </EntityType>
+  <EntityType Name="Board">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Academics" Relationship="Self.FK__Academics__Board__36B12243" FromRole="Boards" ToRole="Academics" />
+  </EntityType>
+  <EntityType Name="Employeer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="YearEstablishment" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CompanySize" Type="Int32" Nullable="false" />
+    <Property Name="TradeLicense" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IndustryType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Employeer__UserI__34C8D9D1" FromRole="Employeers" ToRole="Users" />
+    <NavigationProperty Name="JobPosts" Relationship="Self.FK__JobPosts__Employ__38996AB5" FromRole="Employeers" ToRole="JobPosts" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Academics" Relationship="Self.FK__Academics__Emplo__37A5467C" FromRole="Employees" ToRole="Academics" />
+    <NavigationProperty Name="Applies" Relationship="Self.FK__Applies__Employe__3A81B327" FromRole="Employees" ToRole="Applies" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Employees__UserI__33D4B598" FromRole="Employees" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Exam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Academics" Relationship="Self.FK__Academics__ExamI__35BCFE0A" FromRole="Exams" ToRole="Academics" />
+  </EntityType>
+  <EntityType Name="JobPost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeadLine" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Skill" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vacancies" Type="Int32" Nullable="false" />
+    <Property Name="SalaryMin" Type="Int32" Nullable="false" />
+    <Property Name="SalaryMax" Type="Int32" Nullable="false" />
+    <Property Name="EmployeerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Applies" Relationship="Self.FK__Applies__JobPost__398D8EEE" FromRole="JobPosts" ToRole="Applies" />
+    <NavigationProperty Name="Employeer" Relationship="Self.FK__JobPosts__Employ__38996AB5" FromRole="JobPosts" ToRole="Employeers" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employeers" Relationship="Self.FK__Employeer__UserI__34C8D9D1" FromRole="Users" ToRole="Employeers" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__UserI__33D4B598" FromRole="Users" ToRole="Employees" />
+  </EntityType>
+  <Association Name="FK__Academics__Board__36B12243">
+    <End Role="Boards" Type="Self.Board" Multiplicity="1" />
+    <End Role="Academics" Type="Self.Academic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Boards">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Academics">
+        <PropertyRef Name="BoardId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Academics__Emplo__37A5467C">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Academics" Type="Self.Academic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Academics">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Academics__ExamI__35BCFE0A">
+    <End Role="Exams" Type="Self.Exam" Multiplicity="1" />
+    <End Role="Academics" Type="Self.Academic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Academics">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applies__Employe__3A81B327">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Applies" Type="Self.Apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Applies">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applies__JobPost__398D8EEE">
+    <End Role="JobPosts" Type="Self.JobPost" Multiplicity="1" />
+    <End Role="Applies" Type="Self.Apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobPosts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Applies">
+        <PropertyRef Name="JobPostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employeer__UserI__34C8D9D1">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Employeers" Type="Self.Employeer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employeers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JobPosts__Employ__38996AB5">
+    <End Role="Employeers" Type="Self.Employeer" Multiplicity="1" />
+    <End Role="JobPosts" Type="Self.JobPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employeers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JobPosts">
+        <PropertyRef Name="EmployeerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employees__UserI__33D4B598">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ChakriChaiDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Academics" EntityType="Self.Academic" />
+    <EntitySet Name="Applies" EntityType="Self.Apply" />
+    <EntitySet Name="Boards" EntityType="Self.Board" />
+    <EntitySet Name="Employeers" EntityType="Self.Employeer" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Exams" EntityType="Self.Exam" />
+    <EntitySet Name="JobPosts" EntityType="Self.JobPost" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Academics__Board__36B12243" Association="Self.FK__Academics__Board__36B12243">
+      <End Role="Boards" EntitySet="Boards" />
+      <End Role="Academics" EntitySet="Academics" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Academics__Emplo__37A5467C" Association="Self.FK__Academics__Emplo__37A5467C">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Academics" EntitySet="Academics" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Academics__ExamI__35BCFE0A" Association="Self.FK__Academics__ExamI__35BCFE0A">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="Academics" EntitySet="Academics" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applies__Employe__3A81B327" Association="Self.FK__Applies__Employe__3A81B327">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Applies" EntitySet="Applies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applies__JobPost__398D8EEE" Association="Self.FK__Applies__JobPost__398D8EEE">
+      <End Role="JobPosts" EntitySet="JobPosts" />
+      <End Role="Applies" EntitySet="Applies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employeer__UserI__34C8D9D1" Association="Self.FK__Employeer__UserI__34C8D9D1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employeers" EntitySet="Employeers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JobPosts__Employ__38996AB5" Association="Self.FK__JobPosts__Employ__38996AB5">
+      <End Role="Employeers" EntitySet="Employeers" />
+      <End Role="JobPosts" EntitySet="JobPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employees__UserI__33D4B598" Association="Self.FK__Employees__UserI__33D4B598">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

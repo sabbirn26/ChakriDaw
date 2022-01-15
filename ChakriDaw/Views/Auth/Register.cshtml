@@ -1,0 +1,53 @@
+﻿@model ChakriDaw.ViewModels.User
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@if (TempData["ErrMsg"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrMsg"]
+    </div>
+}
+
+<form method="post" action="/Auth/Register">
+    <p>Name:</p>
+    <input type="text" name="Name" value="@Model.Name" class="form-control" placeholder="your name">
+    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+    <span>Gender: </span>
+    <select name="Gender" id="cars">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+
+    <p>Date of Birth:</p>
+    <input name="DOB" type="date" class="form-control" />
+    @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+
+    <p>Email:</p>
+    <input type="email" name="Email" value="@Model.Email" class="form-control" placeholder="your email">
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+    <p>Phone:</p>
+    <input type="text" name="Phone" value="@Model.Phone" class="form-control" placeholder="your phone">
+    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+
+    <p>Password:</p>
+    <input type="password" name="Password" value="@Model.Password" class="form-control" placeholder="your password">
+    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+    <p>Address:</p>
+    <input type="text" name="Address" value="@Model.Address" class="form-control" placeholder="your address">
+    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+    <p>As a:</p>
+    <select name="Role" id="cars">
+        <option value="Employee">Employee</option>
+        <option value="Employeer">Employeer</option>
+    </select>
+    <br />
+    <input type="submit" class="btn btn-block btn-primary" value="Register" />
+</form>
